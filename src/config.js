@@ -6,6 +6,7 @@
 require('dotenv').config();
 
 module.exports = {
+  apiName: process.env.API_NAME,
   apiPrefix: process.env.API_PREFIX,
   appHost: process.env.APP_HOST,
   appPort: parseInt(process.env.APP_PORT),

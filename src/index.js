@@ -66,7 +66,7 @@ const models = require('./models');
   try {
     server.listen(config.appPort, config.appHost);
     console.log(
-      `_api is listening at http://${config.appHost}:${config.appPort}.`,
+      `${apiName} is listening at http://${config.appHost}:${config.appPort}.`,
     );
   } catch (error) {
     console.error(error);
