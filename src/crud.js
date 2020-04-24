@@ -8,9 +8,8 @@ module.exports = (collection) => {
   const routes = {};
 
   routes.create = async (request, response) => {
-    const payload = request.body;
-
     try {
+      const payload = request.body;
       const result = await collection.create(payload);
 
       return response.status(200).json({
@@ -44,15 +43,15 @@ module.exports = (collection) => {
   };
 
   routes.readById = async (request, response) => {
-    const _id = request.params._id;
-
-    if (request.restrict)
-      return response.status(401).json({
-        resolved: 'failure',
-        message: 'Unauthorized.',
-      });
-
     try {
+      const _id = request.params._id;
+
+      if (request.restrict)
+        return response.status(401).json({
+          resolved: 'failure',
+          message: 'Unauthorized.',
+        });
+
       const result = collection.findById(_id);
 
       return response.status(200).json({
@@ -69,16 +68,16 @@ module.exports = (collection) => {
   };
 
   routes.update = async (request, response) => {
-    const _id = request.params._id;
-    const payload = request.body;
-
-    if (request.restrict && request.restrict !== _id)
-      return response.status(401).json({
-        resolved: 'failure',
-        message: 'Unauthorized.',
-      });
-
     try {
+      const _id = request.params._id;
+      const payload = request.body;
+
+      if (request.restrict && request.restrict !== _id)
+        return response.status(401).json({
+          resolved: 'failure',
+          message: 'Unauthorized.',
+        });
+
       const result = await collection.findByIdAndUpdate(_id, payload);
 
       return response.status(200).json({
@@ -95,15 +94,15 @@ module.exports = (collection) => {
   };
 
   routes.delete = async (request, response) => {
-    const _id = request.params._id;
-
-    if (request.restrict && request.restrict !== _id)
-      return response.status(401).json({
-        resolved: 'failure',
-        message: 'Unauthorized.',
-      });
-
     try {
+      const _id = request.params._id;
+
+      if (request.restrict && request.restrict !== _id)
+        return response.status(401).json({
+          resolved: 'failure',
+          message: 'Unauthorized.',
+        });
+
       await collection.deleteOne({ _id });
 
       return response.status(200).json({

@@ -18,9 +18,8 @@ const roles = require('../roles');
  */
 function check(controller, route) {
   return async (request, response, next) => {
-    const accessToken = request.headers.authorization.split(' ')[1];
-
     try {
+      const accessToken = request.headers.authorization.split(' ')[1];
       const payload = await jwt.verify(accessToken, config.jwtSecret);
       const permissions = roles[payload.role].controllers[controller][route];
 

@@ -42,9 +42,8 @@ module.exports = (collections, io) => {
    * prefixed with /{apiPrefix}/{controllerName}/{routeName}.
    */
   router.post('/login', async (request, response) => {
-    const payload = request.body;
-
     try {
+      const payload = request.body;
       const user = await collections.Users.findOne({ email: payload.email });
 
       if (!user)
@@ -96,9 +95,8 @@ module.exports = (collections, io) => {
   });
 
   router.post('/register', async (request, response) => {
-    const payload = request.body;
-
     try {
+      const payload = request.body;
       payload.password = await hashPassword(payload.password);
 
       const user = await collections.Users.create(payload);
